@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supply Chain Intelligence Platform — Bhumika Varshney</title>
+<meta name="description" content="A five-page Power BI dashboard covering procurement, inventory, logistics and supplier risk.">
+<style>
+:root{
+  color-scheme:light;
+  --surface-1:#fcfcfb; --page:#f9f9f7;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+  --border:rgba(11,11,11,0.10); --accent:#2a78d6;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --text-primary:#fff; --text-secondary:#c3c2b7; --muted:#898781;
+    --border:rgba(255,255,255,0.10); --accent:#3987e5;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --surface-1:#1a1a19; --page:#0d0d0d;
+  --text-primary:#fff; --text-secondary:#c3c2b7; --muted:#898781;
+  --border:rgba(255,255,255,0.10); --accent:#3987e5;
+}
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--page);color:var(--text-primary);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+header{padding:40px 0 8px;display:flex;flex-direction:column}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
+.sub{color:var(--text-secondary);font-size:17px;max-width:62ch;margin:0 0 20px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted)}
+.pill{border:1px solid var(--border);border-radius:999px;padding:4px 11px;background:var(--surface-1)}
+.themebtn{align-self:flex-end;margin-bottom:16px;border:1px solid var(--border);background:var(--surface-1);
+  color:var(--text-secondary);border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;cursor:pointer}
+section{margin-top:44px}
+h2{font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
+.lede{color:var(--text-secondary);font-size:14.5px;margin:0 0 16px;max-width:70ch}
+figure{margin:0;background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:10px}
+img{display:block;width:100%;height:auto;border-radius:6px}
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.method div{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.method h3{font-size:13px;margin:0 0 6px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.method p{margin:0;font-size:14px;color:var(--text-secondary)}
+a{color:var(--accent)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <button class="themebtn" id="themebtn">Dark</button>
+  <h1>Supply Chain Intelligence Platform</h1>
+  <p class="sub">A five-page Power BI model covering the full chain — procurement spend, inventory health, logistics performance and supplier risk — built so an operations lead can go from a headline number to the specific product, supplier or route behind it.</p>
+  <div class="meta">
+    <span class="pill">Power BI</span>
+    <span class="pill">SQL &middot; Python</span>
+    <span class="pill">50 suppliers &middot; 6 sites &middot; 16.5K shipments</span>
+  </div>
+</header>
+
+<section>
+  <h2>Executive overview</h2>
+  <p class="lede">Revenue, inventory value and shipment health on one screen — the view a supply-chain lead opens first.</p>
+  <figure><img src="img/p1.png" alt="Executive overview — Power BI dashboard page" loading="lazy"></figure>
+</section>
+
+<section>
+  <h2>Procurement and supplier spend</h2>
+  <p class="lede">Where the money goes and who it goes to: spend by category and supplier, average lead time, and a quality score per category.</p>
+  <figure><img src="img/p2.png" alt="Procurement and supplier spend — Power BI dashboard page" loading="lazy"></figure>
+</section>
+
+<section>
+  <h2>Inventory health</h2>
+  <p class="lede">Dead stock and every product sitting below its safety stock level, by warehouse — the working list for a replenishment run.</p>
+  <figure><img src="img/p3.png" alt="Inventory health — Power BI dashboard page" loading="lazy"></figure>
+</section>
+
+<section>
+  <h2>Logistics and transit</h2>
+  <p class="lede">Shipment status, transit time by mode, transportation cost by route, delay reasons, and a geographic view of shipment origins.</p>
+  <figure><img src="img/p4.png" alt="Logistics and transit — Power BI dashboard page" loading="lazy"></figure>
+</section>
+
+<section>
+  <h2>Risk and recommendations</h2>
+  <p class="lede">Supplier risk scores, a delay-prediction view by route, inventory trajectory, and per-supplier action prompts.</p>
+  <figure><img src="img/p5.png" alt="Risk and recommendations — Power BI dashboard page" loading="lazy"></figure>
+</section>
+<section>
+  <h2>How it was built</h2>
+  <div class="method">
+    <div><h3>Model</h3><p>A star schema over shipments, purchase orders, inventory positions and supplier master data, related on product, supplier, warehouse and date keys.</p></div>
+    <div><h3>Measures</h3><p>DAX measures for spend, lead time, turnover, on-time rate and safety-stock breaches, written once and reused across all five pages.</p></div>
+    <div><h3>Navigation</h3><p>Each page answers one question and drills to the row level — the safety-stock page lists the exact product and warehouse, not just a count.</p></div>
+    <div><h3>Data</h3><p>Simulated operational data generated to mirror a multi-site manufacturer, so the model can be shared without exposing a real supply chain.</p></div>
+  </div>
+</section>
+<footer>
+  <p>Built by Bhumika Varshney &middot; <a href="https://github.com/bhumi123-bhumi/supply-chain-platform">Source on GitHub</a></p>
+  <p>Dashboard built on simulated supply-chain data for portfolio purposes.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('themebtn'), root=document.documentElement;
+  var stored=null; try{stored=localStorage.getItem('theme');}catch(e){}
+  if(stored) root.setAttribute('data-theme',stored);
+  function sysDark(){return matchMedia('(prefers-color-scheme: dark)').matches;}
+  function cur(){return root.getAttribute('data-theme')||(sysDark()?'dark':'light');}
+  function sync(){btn.textContent=cur()==='dark'?'Light':'Dark';}
+  sync();
+  btn.onclick=function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);
+    try{localStorage.setItem('theme',n);}catch(e){} sync();};
+})();
+</script>
+</body>
+</html>
